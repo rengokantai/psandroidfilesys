@@ -45,3 +45,47 @@ Important Methods
     - MODE_PRIVATE(default)
     - MODE_APPEND
       - If the file already exists then it writes the data at the data at the end of the file
+
+
+### 3 Writing to the Internal Storage
+```
+public void saveToInternalStorage(View view){
+  String messageData = fileName.getText().toString();
+  FileOutputStream fos;
+  try{
+    fos = openFileOutput(fileName,MODE_PRIVATE);
+    fos.write(messageData.getBytes());
+    fos.close();
+  } catch(FileNotFoundException){
+  }catch(IOException e){
+  }
+}
+```
+###### 06:40 android device monitor
+data->data->packagename
+
+
+### 4 Reading from the Internal Storage
+```
+String fileName = eFileName.getText().toString();
+StringBuffer stuBuffer = new StringBuffer();
+FileInputStream fis = null;
+try {
+  fis = openFileInput(fileName);
+  int read;
+  while((read=fis.read())!=-1){
+    strBuffer.append((char)read);
+  }
+ } catch(FileNotFoundException e){
+  e.printStackTrace();
+ }catch(IOException e){
+ }finally{
+  if(fis!=null){
+    try{
+      fis.close();
+    }catch(IOException e){
+    }
+  }
+ }
+
+```
